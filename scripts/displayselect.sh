@@ -3,7 +3,8 @@ intern="eDP-1"
 
 choices="VGA\nHDMI\nLaptop"
 
-chosen=$(echo -e "$choices"| dmenu -i -p "Select display")
+chosen=$(echo -e "$choices"| dmenu -i -p "Select display" -fn "Hack:size=13:antilias=true:autohint=true" -nb "#222222" -nf "#444444" -sb "#f9906f" -sf "#eeeeee")
+
 case "$chosen"  in
 	VGA)
 		if xrandr | grep "VGA-1 connected"; then
