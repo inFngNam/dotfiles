@@ -10,7 +10,7 @@ red=#d47d85
 darkblue=#668ee3
 yellow=#d4d17d
 
-# counting variables
+# init count variables
 total_unreaded_mails="$(python $HOME/dotfiles/bar/get_unreaded_mail.py)"
 total_updatable_packages="$(checkupdates | wc -l)"
 
@@ -87,7 +87,6 @@ battery() {
 	fi
 }
 
-
 internet_connection() {
 	etherport_check="$(cat /sys/class/net/eno1/carrier)"
 	if [[ $etherport_check == '0' ]];
@@ -163,15 +162,14 @@ function get_updatable_packages {
 	total_updatable_packages="$(checkupdates | wc -l)"
 }
 
-# loop
+# loops
 
 # update loop (For not does not affect the main loop)
 # get mails every 5 minutes
-# get packages every 30 minutes
 updatable_packages_loop_count=0
-
 while true; do
 	get_unreaded_mails
+	# get packages every 30 minutes
 	if [[ $updatable_package_loop_count -eq 6 ]];
 	then
 		get_updatable_packages
@@ -179,7 +177,6 @@ while true; do
 	else
 		updatable_packages_loop_count=$((updatable_packages_loop_count+1))
 	fi
-
 	sleep 300;
 done &
 
