@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -12,17 +14,18 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char col_orange[] = "#f9906f";
+static const char col_orange[]      = "#f9906f";
+static const char col_purple[]      = "#906ff9";
+static const char col_black[]       = "#000000";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_orange,  col_orange  },
+	[SchemeSel]  = { col_black, col_purple,  col_orange  },
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "ﮭ", "", "6", "7",};
-
+static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -59,17 +62,20 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_purple, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *web[]  = { "firefox", NULL };
-static const char *filemanager[]  = { "ranger", NULL };
+static const char *webcmd[] = { "firefox", NULL };
+static const char *filemanager[] = { "alacritty", "-e", "ranger", NULL };
+static const char *volumeupcmd[] = { "pamixer", "-i", "5", NULL };
+static const char *volumedowncmd[] = { "pamixer", "-d", "5", NULL };
+static const char *mutecmd[] = { "pamixer", "-t", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = filemanager } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = web } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = webcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -91,6 +97,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = volumedowncmd } },
+	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutecmd } },
+	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = volumeupcmd   } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

@@ -11,7 +11,7 @@ darkblue=#668ee3
 yellow=#d4d17d
 
 clock() {
-	printf "^c$black^^b$blue^[ $(date '+%a %b %d %Y, %H:%M:%S')]"
+	printf "^c$darkblue^[ $(date '+%a %b %d %Y, %H:%M:%S')]"
 }
 
 battery() {
@@ -90,14 +90,14 @@ internet_connection() {
 		case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
 			up)
 				wifi=$(iw wlan0 link | grep SSID| awk '{print $2}')
-				printf "^c$black^ ^b$blue^ 直 ^d^%s" " ^c$blue^$wifi" 
+				printf "[^c$blue^直 $wifi^c$white^]"
 				;;
 			down)
-				printf "^c$black^ ^b$blue^ 睊 ^d^%s" " ^c$blue^Disconnected"
+				printf "[^c$blue^睊 Disconnected^c$white^]"
 				;;
 		esac
 	else
-		printf "^c$black^ ^b$blue^  ^d^%s" " ^c$blue^Ethernet" 
+		printf "[^c$blue^ Ethernet ^c$white^]"
 	fi
 }
 
@@ -119,4 +119,24 @@ temperature(){
 	fi
 }
 
-xsetroot -name "$(temperature)$(cpu)$(battery)$(internet_connection) $(clock)"
+unreaded_mail(){
+	value="$(python get_unreaded_mail.py)"
+	printf "^c$white^[^c$red^ $value^c$white^]"
+}
+
+audio(){
+	volume="$(pamixer --get-volume)"
+	if [[ $volume -eq 0 ]];
+	then
+		printf "^c$white^[^c$green^ﱝ^c$white^]"
+	elif [[ $volume -lt 30 ]];
+	then
+		printf "^c$white^[^c$green^奄 $volume^c$white^]"
+	elif [[ $volumn -ge 30 ]] && [[ $volumn -lt 65 ]];
+	then
+		printf "^c$white^[^c$green^奔 $volume^c$white^]"
+	else
+		printf "^c$white^[^c$green^墳 $volume^c$white^]"
+	fi
+}
+xsetroot -name "$(unreaded_mail)$(temperature)$(cpu)$(battery)$(internet_connection)$(audio)$(clock)"
