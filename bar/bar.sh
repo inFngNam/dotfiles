@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#colorrs
+# colorrs
 black=#1e222a
 green=#7eca9c
 white=#abb2bf
@@ -10,6 +10,11 @@ red=#d47d85
 darkblue=#668ee3
 yellow=#d4d17d
 
+# counting variables
+total_unreaded_mails="$(python $HOME/dotfiles/bar/get_unreaded_mail.py)"
+total_updatable_packages="$(checkupdates | wc -l)"
+
+# functions values
 clock() {
 	printf "^c$darkblue^[ $(date '+%a %b %d %Y, %H:%M:%S')]"
 }
@@ -119,9 +124,11 @@ temperature(){
 	fi
 }
 
-unreaded_mail(){
-	value="$(python get_unreaded_mail.py)"
-	printf "^c$white^[^c$red^ $value^c$white^]"
+unreaded_mails(){
+	if [[ $total_unreaded_mails -ne 0 ]];
+	then
+		printf "^c$white^[^c$red^ $total_unreaded_mails^c$white^]"
+	fi
 }
 
 audio(){
@@ -139,4 +146,45 @@ audio(){
 		printf "^c$white^[^c$green^墳 $volume^c$white^]"
 	fi
 }
-xsetroot -name "$(unreaded_mail)$(temperature)$(cpu)$(battery)$(internet_connection)$(audio)$(clock)"
+
+updatable_packages(){
+	if [[ $total_updatable_packages -ne 0 ]];
+	then
+		printf "^c$white^[^b$grey^^c$green^ $total_updatable_packages^b$black^^c$white^]"
+	fi
+}
+
+#update some values
+function get_unreaded_mails {
+	total_unreaded_mails="$(python $HOME/dotfiles/bar/get_unreaded_mail.py)"
+}
+
+function get_updatable_packages {
+	total_updatable_packages="$(checkupdates | wc -l)"
+}
+
+# loop
+
+# update loop (For not does not affect the main loop)
+# get mails every 5 minutes
+# get packages every 30 minutes
+updatable_packages_loop_count=0
+
+while true; do
+	get_unreaded_mails
+	if [[ $updatable_package_loop_count -eq 6 ]];
+	then
+		get_updatable_packages
+		updatable_packages_loop_count=0
+	else
+		updatable_packages_loop_count=$((updatable_packages_loop_count+1))
+	fi
+
+	sleep 300;
+done &
+
+# main loop
+while true; do
+	xsetroot -name "$(updatable_packages)$(unreaded_mails)$(temperature)$(cpu)$(battery)$(internet_connection)$(audio)$(clock)"
+	sleep 1;
+done
