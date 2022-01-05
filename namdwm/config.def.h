@@ -69,12 +69,13 @@ static const char *filemanager[] = { "alacritty", "-e", "ranger", NULL };
 static const char *volumeupcmd[] = { "pamixer", "-i", "5", NULL };
 static const char *volumedowncmd[] = { "pamixer", "-d", "5", NULL };
 static const char *mutecmd[] = { "pamixer", "-t", NULL };
-
+static const char *calendarcmd[] = { "alacritty", "-e", "calcurse", "NULL" };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = filemanager } },
+	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = calendarcmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = webcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -97,9 +98,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = volumedowncmd } },
-	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutecmd } },
-	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = volumeupcmd   } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedowncmd } },
+	{ 0,                            XF86XK_AudioMute, spawn, {.v = mutecmd } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeupcmd   } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

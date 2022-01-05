@@ -39,7 +39,10 @@ fi
 # exec xterm -geometry 80x66+0+0 -name login
 
 export PATH="$PATH:/home/nam/scripts"
-# dwmbar &
+# dwmbar 
+
+sh $HOME/dotfiles/bar/bar.sh
+
 nitrogen --restore &
 picom &
 exec dwm

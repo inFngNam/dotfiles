@@ -194,4 +194,4 @@ done &
 while true; do
 	xsetroot -name "$(updatable_packages)$(unreaded_mails)$(temperature)$(cpu)$(battery)$(internet_connection)$(audio)$(clock)"
 	sleep 1;
-done
+done &
