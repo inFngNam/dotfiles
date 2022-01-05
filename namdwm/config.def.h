@@ -69,7 +69,7 @@ static const char *filemanager[] = { "alacritty", "-e", "ranger", NULL };
 static const char *volumeupcmd[] = { "pamixer", "-i", "5", NULL };
 static const char *volumedowncmd[] = { "pamixer", "-d", "5", NULL };
 static const char *mutecmd[] = { "pamixer", "-t", NULL };
-static const char *calendarcmd[] = { "alacritty", "-e", "calcurse", "NULL" };
+static const char *calendarcmd[] = { "alacritty", "-e", "calcurse", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
