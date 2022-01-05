@@ -173,25 +173,26 @@ function get_updatable_packages {
 }
 
 # loops
-
-# update loop (For not does not affect the main loop)
-# get mails every 5 minutes
+get_mails_loop_count=0
 updatable_packages_loop_count=0
+# main loop
 while true; do
-	get_unreaded_mails
-	# get packages every 30 minutes
-	if [[ $updatable_package_loop_count -eq 6 ]];
+	if [[ $get_mails_loop_count -eq 300 ]];
+	then
+		get_unreaded_mails
+		get_mails_loop_count=0
+	else
+		get_mails_loop_count=$((get_mails_loop_count+1))
+	fi
+
+	if [[ $updatable_packages_loop_count -eq 1800 ]];
 	then
 		get_updatable_packages
 		updatable_packages_loop_count=0
 	else
 		updatable_packages_loop_count=$((updatable_packages_loop_count+1))
 	fi
-	sleep 300;
-done &
 
-# main loop
-while true; do
 	xsetroot -name "$(updatable_packages)$(unreaded_mails)$(temperature)$(cpu)$(battery)$(internet_connection)$(audio)$(clock)"
 	sleep 1;
-done &
+done & 
