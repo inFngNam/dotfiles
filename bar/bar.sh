@@ -14,6 +14,9 @@ yellow=#d4d17d
 total_unreaded_mails="$(python $HOME/dotfiles/bar/get_unreaded_mail.py)"
 total_updatable_packages="$(checkupdates | wc -l)"
 
+last_updated="$(grep 'upgraded' /var/log/pacman.log | tail -1 | awk '{print substr($1, 2, length($1)-7)}')"
+last_checkupdates="$(date --iso-8601=seconds | awk '{print substr($1, 1, length($1) - 6)}')"
+
 # functions values
 clock() {
 	printf "^c$darkblue^[ $(date '+%a %b %d %Y, %H:%M:%S')]"
@@ -147,6 +150,12 @@ audio(){
 }
 
 updatable_packages(){
+	last_updated="$(grep 'upgraded' /var/log/pacman.log | tail -1 | awk '{print substr($1, 2, length($1)-7)}')"
+	if [[ "$last_updated" > "$last_checkupdates" ]];
+	then
+		total_update_packages=0
+	fi
+
 	if [[ $total_updatable_packages -ne 0 ]];
 	then
 		printf "^c$white^[^b$grey^^c$green^ $total_updatable_packages^b$black^^c$white^]"
@@ -160,6 +169,7 @@ function get_unreaded_mails {
 
 function get_updatable_packages {
 	total_updatable_packages="$(checkupdates | wc -l)"
+	last_checkupdates="$(date --iso-8601=seconds | awk '{print substr($1, 1, length($1) - 6)}')"
 }
 
 # loops
