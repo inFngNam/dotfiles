@@ -19,7 +19,7 @@ last_checkupdates="$(date --iso-8601=seconds | awk '{print substr($1, 1, length(
 
 # functions values
 clock() {
-	printf "^c$white^[^c$darkblue^ ^c$white^$(date '+%a %b %d %Y, %H:%M:%S')]"
+	printf "^c$white^[ ^c$white^$(date '+%a %b %d %Y, %H:%M:%S')]"
 }
 
 battery() {
