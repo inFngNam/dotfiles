@@ -157,7 +157,7 @@ updatable_packages(){
 		total_update_packages=0
 	fi
 
-	if [[ $total_updatable_packages -ne 0 ]];
+	if [[ "$last_updated" < "$last_checkupdates" ]] && [[ $total_updatable_packages -ne 0 ]];
 	then
 		printf "^c$white^[^b$grey^^c$green^ $total_updatable_packages^b$black^^c$white^]"
 	fi
