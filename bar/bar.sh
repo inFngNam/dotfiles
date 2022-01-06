@@ -115,10 +115,10 @@ cpu() {
 
 temperature(){
 	value=$(sensors | grep "Package id 0" | awk '{print $4}' | grep -o '[0-9]*' | head -1)
-	if [[ value -lt 75 ]];
+	if [[ $value -lt 75 ]];
 	then
 		printf "^c$white^[^c$green^$value 糖^c$white^]^c$black^"
-	elif [[ value -lt 85 ]];
+	elif [[ $value -lt 85 ]];
 	then
 		printf "^c$white^[^c$yellow^$value 糖^c$white^]^c$black^"
 	else
@@ -136,7 +136,7 @@ unreaded_mails(){
 audio(){
 	volume="$(pamixer --get-volume)"
 	isMute="$(pamixer --get-mute)"
-	if [[ isMute == "true" ] || [[ $volume -eq 0 ]];
+	if [[ isMute == "true" ]] || [[ $volume -eq 0 ]];
 	then
 		printf "^c$white^[^c$red^ﱝ^c$white^]"
 	elif [[ $volume -lt 30 ]];
