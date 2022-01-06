@@ -104,7 +104,7 @@ internet_connection() {
 				;;
 		esac
 	else
-		printf "[^c$blue^ Ethernet ^c$white^]"
+		printf "[^c$blue^ Ethernet^c$white^]"
 	fi
 }
 
@@ -135,9 +135,10 @@ unreaded_mails(){
 
 audio(){
 	volume="$(pamixer --get-volume)"
-	if [[ $volume -eq 0 ]];
+	isMute="$(pamixer --get-mute)"
+	if [[ isMute == "true" ] || [[ $volume -eq 0 ]];
 	then
-		printf "^c$white^[^c$green^ﱝ^c$white^]"
+		printf "^c$white^[^c$red^ﱝ^c$white^]"
 	elif [[ $volume -lt 30 ]];
 	then
 		printf "^c$white^[^c$green^奄 $volume^c$white^]"
