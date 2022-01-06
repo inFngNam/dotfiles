@@ -33,52 +33,43 @@ font:
     x: 0
     y: 0
 
-draw_bold_text_with_bright_colors: true
 background_opacity: 0.9
-
-
-# Base16 DanQing 256 - alacritty color config
-# Wenhan Zhu (Cosmos) (zhuwenhan950913@gmail.com)
+# Base16 Material Darker - alacritty color config
+# Nate Peterson
 colors:
   # Default colors
   primary:
-    background: '0x2d302f'
-    foreground: '0xe0f0ef'
+    background: '0x212121'
+    foreground: '0xeeffff'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x2d302f'
-    cursor: '0xe0f0ef'
+    text: '0x212121'
+    cursor: '0xeeffff'
 
   # Normal colors
   normal:
-    black:   '0x2d302f'
-    red:     '0xf9906f'
-    green:   '0x8ab361'
-    yellow:  '0xf0c239'
-    blue:    '0xb0a4e3'
-    magenta: '0xcca4e3'
-    cyan:    '0x30dff3'
-    white:   '0xe0f0ef'
+    black:   '0x212121'
+    red:     '0xf07178'
+    green:   '0xc3e88d'
+    yellow:  '0xffcb6b'
+    blue:    '0x82aaff'
+    magenta: '0xc792ea'
+    cyan:    '0x89ddff'
+    white:   '0xeeffff'
 
   # Bright colors
   bright:
-    black:   '0x9da8a3'
-    red:     '0xf9906f'
-    green:   '0x8ab361'
-    yellow:  '0xf0c239'
-    blue:    '0xb0a4e3'
-    magenta: '0xcca4e3'
-    cyan:    '0x30dff3'
-    white:   '0xfcfefd'
+    black:   '0x4a4a4a'
+    red:     '0xf78c6c'
+    green:   '0x303030'
+    yellow:  '0x353535'
+    blue:    '0xb2ccd6'
+    magenta: '0xeeffff'
+    cyan:    '0xff5370'
+    white:   '0xffffff'
 
-  indexed_colors:
-    - { index: 16, color: '0xb38a61' }
-    - { index: 17, color: '0xca6924' }
-    - { index: 18, color: '0x434846' }
-    - { index: 19, color: '0x5a605d' }
-    - { index: 20, color: '0xcad8d2' }
-    - { index: 21, color: '0xecf6f2' }
+draw_bold_text_with_bright_colors: false
 
 bell:
   animation: EaseOutExpo
