@@ -66,10 +66,12 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *webcmd[] = { "firefox", NULL };
 static const char *filemanager[] = { "alacritty", "-e", "ranger", NULL };
-static const char *volumeupcmd[] = { "pamixer", "-i", "5", NULL };
-static const char *volumedowncmd[] = { "pamixer", "-d", "5", NULL };
+static const char *volumeupcmd[] = { "pamixer", "-u", "-i", "5", NULL };
+static const char *volumedowncmd[] = { "pamixer", "-u", "-d", "5", NULL };
 static const char *mutecmd[] = { "pamixer", "-t", NULL };
 static const char *calendarcmd[] = { "alacritty", "-e", "calcurse", NULL };
+static const char *screencapturecmd[] = { "xfce4-screenshooter", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
@@ -101,6 +103,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedowncmd } },
 	{ 0,                            XF86XK_AudioMute, spawn, {.v = mutecmd } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeupcmd   } },
+        { 0,                            XK_Print,  spawn ,         { .v = screencapturecmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

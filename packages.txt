@@ -1,1 +1,3 @@
-pacman-contrib iw sensors python-pip pamixer pulseaudio xorg xorg-xinit base linux linux-firmware linux-headers vim man-db man-pages tar gzip texinfo base-devel iwd dhcpcd openssh stow tree 
+pacman-contrib iw sensors python-pip pamixer pulseaudio xorg xorg-xinit base linux linux-firmware
+linux-headers vim man-db man-pages tar gzip texinfo base-devel iwd dhcpcd openssh stow tree
+xfce4-screenshooter
