@@ -61,7 +61,6 @@ battery() {
 		else
 			printf "^c$white^[^c$green^ $capacity%%^c$white^]"
 		fi
-
 	else 
 		if [[ $capacity -lt 10 ]]; 
 		then
@@ -136,7 +135,7 @@ unreaded_mails(){
 audio(){
 	volume="$(pamixer --get-volume)"
 	isMute="$(pamixer --get-mute)"
-	if [[ isMute == "true" ]] || [[ $volume -eq 0 ]];
+	if [[ $isMute == "true" ]] || [[ $volume -eq 0 ]];
 	then
 		printf "^c$white^[^c$red^ﱝ^c$white^]"
 	elif [[ $volume -lt 30 ]];
