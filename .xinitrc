@@ -48,14 +48,14 @@ export PATH="$PATH:$HOME/dotfiles/shell:$HOME/local/.bin"
 #picom &
 #exec dwm
 
-# For startx ~/.xinit 'dwm'
-# session=${1:-dwm}
-# if [[ $session == 'xfce4' ]];
-# then
-#    exec startxfce4
-# else
-#    sh $HOME/dotfiles/bar/bar.sh
-#    nitrogen --restore &
-#    picom &
-#    exec dwm
-# fi
+# For startx ~/.xinitrc 'dwm'
+session=${1:-dwm}
+if [[ $session == 'cinnamon' ]];
+then
+    exec cinnamon-session
+else
+    sh $HOME/dotfiles/bar/bar.sh
+    nitrogen --restore &
+    picom &
+    exec dwm
+fi
