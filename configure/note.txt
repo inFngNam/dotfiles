@@ -1,1 +1,1 @@
-stow -t ~/.config -S {nam}
+stow -t ~/.config -S {name}
