@@ -1,0 +1,9 @@
+#!/bin/sh
+
+sh $HOME/dotfiles/bar/bar.sh
+
+nitrogen --restore &
+picom &
+
+echo "$(date): Starting dwn" >> $HOME/logs/$(date +%Y-%m-%d_%H.dwm.log)
+dwm >> $HOME/logs/$(date +%Y-%m-%d_%H.dwm.log) 2>&1

@@ -42,8 +42,20 @@ export PATH="$PATH:$HOME/dotfiles/shell:$HOME/local/.bin"
 
 # dwmbar
 
-sh $HOME/dotfiles/bar/bar.sh
+#sh $HOME/dotfiles/bar/bar.sh
 
-nitrogen --restore &
-picom &
-exec dwm
+#nitrogen --restore &
+#picom &
+#exec dwm
+
+# For startx ~/.xinit 'dwm'
+# session=${1:-dwm}
+# if [[ $session == 'xfce4' ]];
+# then
+#    exec startxfce4
+# else
+#    sh $HOME/dotfiles/bar/bar.sh
+#    nitrogen --restore &
+#    picom &
+#    exec dwm
+# fi
