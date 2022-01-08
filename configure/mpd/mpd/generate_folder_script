@@ -1,0 +1,8 @@
+#!/usr/sh
+
+## Generate file
+
+mkdir data
+mkdir data/playlists
+cd data
+touch database log pid state
