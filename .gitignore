@@ -154,9 +154,5 @@ cython_debug/
 credentials.json
 token.json
 
-state
-log
-database
-playlists
-pid
+/mpd/mpd/data/
 
