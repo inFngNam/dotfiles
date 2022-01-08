@@ -1,7 +1,6 @@
 #!/usr/sh
 
-## Generate file
-
+## Generate directory
 mkdir data
 mkdir data/playlists
 cd data
