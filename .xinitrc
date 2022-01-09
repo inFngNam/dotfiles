@@ -53,11 +53,17 @@ if [[ $session == 'cinnamon' ]];
 then
     exec cinnamon-session
 else
+    # start status bar
     sh $HOME/dotfiles/bar/bar.sh
+    
+    # start background
     nitrogen --restore &
     picom &
 
+    # start ibus
+    ibus-daemon -drxR
 
+    # display monitor
     if [[ "$VGA" != "" ]];
     then
         xrandr --output "$HDMI" --off --output "$intern" --off --output "$VGA" --primary --auto
@@ -67,6 +73,8 @@ else
     else
 		xrandr --output "$VGA" --off --output "$HDMI" --off --output "$intern" --primary --auto
     fi
-
+   
+    # start stalonetray
+    stalonetray -c ~/.config/stalonetray/stalonestrayrc &
     exec dwm
 fi

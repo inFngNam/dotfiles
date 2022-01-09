@@ -1,1 +1,1 @@
-gotop python-xlsx2csv
+gotop python-xlsx2csv ibus-bamboo
