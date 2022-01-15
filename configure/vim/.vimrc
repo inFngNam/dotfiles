@@ -26,3 +26,14 @@ set showmode
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+
+call plug#begin()
+Plug 'preservim/NERDTree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
+
+set t_Co=256
+let g:airline_theme='angr'
+let g:airline_powerline_fonts = 1
