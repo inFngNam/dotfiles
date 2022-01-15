@@ -32,8 +32,13 @@ call plug#begin()
 Plug 'preservim/NERDTree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 set t_Co=256
 let g:airline_theme='angr'
 let g:airline_powerline_fonts = 1
+
+let g:OmniSharp_server_stdio = 1
+let g:coc_global_extensions= [ 'coc-omnisharp' ]
