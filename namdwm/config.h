@@ -64,7 +64,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_purple, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *webcmd[] = { "firefox", NULL };
+static const char *webcmd[] = { "chromium", NULL };
 static const char *filemanager[] = { "alacritty", "-e", "ranger", NULL };
 static const char *volumeupcmd[] = { "pamixer", "-u", "-i", "5", NULL };
 static const char *volumedowncmd[] = { "pamixer", "-u", "-d", "5", NULL };
@@ -103,7 +103,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = volumedowncmd } },
 	{ 0,                            XF86XK_AudioMute, spawn, {.v = mutecmd } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volumeupcmd   } },
-        { 0,                            XK_Print,  spawn ,         { .v = screencapturecmd } },
+    { 0,                            XK_Print,  spawn ,         { .v = screencapturecmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
