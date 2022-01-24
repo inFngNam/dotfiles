@@ -1,0 +1,33 @@
+"*":
+  core:
+    autoHideMenuBar: true
+    closeDeletedFileTabs: true
+    colorProfile: "srgb"
+    openEmptyEditorOnStart: false
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "dracula-night-syntax"
+    ]
+  editor:
+    defaultFontSize: 17
+    fontFamily: "Hack, Consolas, DejaVu Sans Mono, monospace"
+    fontSize: 17
+    invisibles:
+      cr: false
+      eol: false
+      tab: false
+    showInvisibles: true
+    tabType: "soft"
+  "one-dark-ui":
+    fontSize: 13
+    hideDockButtons: true
+    stickyHeaders: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
+    removeTrailingWhitespace: false
+".cs.source":
+  editor:
+    tabLength: 4
